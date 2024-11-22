@@ -1,0 +1,80 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .floating {
+    animation: floating 3s ease-in-out infinite;
+  }
+
+  .parallax {
+    transform-style: preserve-3d;
+    perspective: 1000px;
+  }
+
+  @keyframes floating {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+  }
+}
+
+.animation-delay-200 {
+  animation-delay: 200ms;
+}
+
+.cursor-glow {
+  position: relative;
+  overflow: hidden;
+}
+
+.cursor-glow::before {
+  content: '';
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  background: radial-gradient(circle, 
+    rgba(168, 85, 247, 0.15) 0%,
+    transparent 70%
+  );
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  left: var(--x, 0);
+  top: var(--y, 0);
+  transform: translate(-50%, -50%);
+}
+
+.cursor-glow:hover::before {
+  opacity: 1;
+}
+
+.grid-pattern {
+  background-image: 
+    linear-gradient(to right, rgba(139, 92, 246, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(139, 92, 246, 0.05) 1px, transparent 1px);
+  background-size: 30px 30px;
+  background-position: center;
+  position: relative;
+}
+
+.grid-pattern::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, 
+    rgba(88, 28, 135, 0.3),
+    rgba(88, 28, 135, 0.1) 40%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+@keyframes glow {
+  0% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 0.8;
+  }
+}
