@@ -1,0 +1,223 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .animate-in {
+    opacity: 1 !important;
+    transform: translate(0, 0) !important;
+  }
+
+  .floating {
+    animation: floating 3s ease-in-out infinite;
+  }
+
+  .parallax {
+    transform-style: preserve-3d;
+    perspective: 1000px;
+  }
+
+  @keyframes floating {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+  }
+}
+
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;
+  background-color: #ffffff;
+  font-family: 'Inter', sans-serif;
+}
+
+.cursor-glow {
+  position: relative;
+}
+
+.cursor-glow::before {
+  content: '';
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, 
+    rgba(34, 197, 94, 0.15) 0%,
+    transparent 70%
+  );
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  left: var(--x, 0);
+  top: var(--y, 0);
+  transform: translate(-50%, -50%);
+}
+
+.cursor-glow:hover::before {
+  opacity: 1;
+}
+
+.luxury-text {
+  text-shadow: 0 0 15px rgba(34, 197, 94, 0.5),
+               0 0 25px rgba(21, 128, 61, 0.3);
+  animation: textGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes textGlow {
+  0% {
+    text-shadow: 0 0 15px rgba(34, 197, 94, 0.3),
+                 0 0 25px rgba(21, 128, 61, 0.2);
+  }
+  100% {
+    text-shadow: 0 0 20px rgba(34, 197, 94, 0.5),
+                 0 0 30px rgba(21, 128, 61, 0.4);
+  }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.animate-bounce-slow {
+  animation: bounce 2s ease-in-out infinite;
+}
+
+.get-started-button {
+  transition: all 0.3s ease;
+  background-color: #f3f4f6;
+  color: #374151;
+  border-color: #22c55e;
+}
+
+.get-started-button:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 10px 20px rgba(21, 128, 61, 0.2);
+  background-color: #22c55e;
+  color: #ffffff;
+  border-color: #f3f4f6;
+}
+
+@keyframes moveGradient {
+  0% {
+    transform: translate(-10%, -50%);
+  }
+  50% {
+    transform: translate(10%, -50%);
+  }
+  100% {
+    transform: translate(-10%, -50%);
+  }
+}
+
+.transition-opacity {
+  transition-property: opacity;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.duration-2000 {
+  transition-duration: 2000ms;
+}
+
+@keyframes scroll-down {
+  0% { transform: translateY(0); opacity: 1; }
+  75% { transform: translateY(0.5rem); opacity: 0; }
+  76% { transform: translateY(-0.5rem); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+.animate-scroll-down {
+  animation: scroll-down 2s ease-in-out infinite;
+}
+
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(calc(-350px * 3 - 2rem * 3)); }
+}
+
+.animate-scroll {
+  animation: scroll 30s linear infinite;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 1s ease-out;
+}
+
+.animate-fadeInUp {
+  animation: fadeInUp 1s ease-out;
+}
+
+@keyframes fadeOut {
+  0% { opacity: 1; visibility: visible; }
+  100% { opacity: 0; visibility: hidden; }
+}
+
+/* Mobile Menu Animations */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.mobile-menu-enter {
+  animation: slideIn 0.3s ease-out forwards;
+}
+
+.mobile-menu-item {
+  opacity: 0;
+  animation: slideIn 0.3s ease-out forwards;
+}
+
+.mobile-menu-item:nth-child(1) { animation-delay: 0.1s; }
+.mobile-menu-item:nth-child(2) { animation-delay: 0.2s; }
+.mobile-menu-item:nth-child(3) { animation-delay: 0.3s; }
+.mobile-menu-item:nth-child(4) { animation-delay: 0.4s; }
+.mobile-menu-item:nth-child(5) { animation-delay: 0.5s; }
+
+/* Smooth Scroll */
+.smooth-scroll {
+  scroll-behavior: smooth;
+  transition: scroll-behavior 1.5s ease-in-out;
+}
+
+.cursor-glow::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle at var(--x, 0) var(--y, 0),
+    rgba(34, 197, 94, 0.15) 0%,
+    transparent 100%
+  );
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  left: 0;
+  top: 0;
+}
+
+.cursor-glow:hover::before {
+  opacity: 1;
+}
