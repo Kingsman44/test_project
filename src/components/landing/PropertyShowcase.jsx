@@ -50,7 +50,7 @@ const PropertyShowcase = () => {
             <p className="text-gray-600">Discover Our Premium Co-ownership Opportunities</p>
           </div>
 
-          <div className="flex pb-8">
+          <div className="flex pb-8 max-sm:none">
             <div className="flex-1 grid md:grid-cols-2 gap-8 items-center px-4">
               <div className="space-y-6">
                 <AnimatedElement key={currentIndex} direction="left" delay={0.2}>

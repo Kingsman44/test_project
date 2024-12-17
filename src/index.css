@@ -27,7 +27,7 @@ html, body {
   overflow-x: hidden;
   max-width: 100%;
   background-color: #ffffff;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Inter', sans-serif, 'Dancing Script';
 }
 
 .cursor-glow {
@@ -221,3 +221,4 @@ html, body {
 .cursor-glow:hover::before {
   opacity: 1;
 }
+

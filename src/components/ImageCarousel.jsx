@@ -55,10 +55,10 @@ const ImageCarousel = () => {
         <div className="flex-1 animate-bounce-slow text-center">
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-8">
             Join Your{' '}
-            <img src={Logo} className='h-44 -mt-16 brightness-0 invert -m-12 inline drop-shadow-[0_0_10px_rgba(255,255,255,0.8)' />
+            <img src={Logo} className="h-44 max-sm:h-36 -mt-16 max-sm:-mt-8 brightness-0 invert -m-12 max-sm:-m-6 inline drop-shadow-[0_0_10px_rgba(255,255,255,0.8)]" />
             {' '} who is just Awesome as{' '}
-            <span className="luxury-text bg-gradient-to-r from-primary-100 via-primary-200 to-primary-300 bg-clip-text text-transparent">
-              You
+            <span className="font-cursive bg-gradient-to-r from-primary-100 via-primary-200 to-primary-300 bg-clip-text text-transparent damion-regular">
+              you
             </span>
           </h1>
           <p className="text-xl text-white mb-12 max-w-3xl mx-auto">
