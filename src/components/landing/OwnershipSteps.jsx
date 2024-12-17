@@ -4,23 +4,23 @@ import AnimatedElement from '../animations/AnimatedElement';
 
 const Step = ({ icon: Icon, number, title, points, delay }) => (
   <AnimatedElement direction="up" delay={delay}>
-    <div className="bg-white/80 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-primary-100">
+    <div className="bg-white/80 backdrop-blur-sm rounded-xl p-3 sm:p-6 shadow-lg border border-primary-100">
       <div className="flex items-start space-x-4">
-        <div className="flex-shrink-0">
+        <div className="max-sm:hidden flex-shrink-0">
           <div className="w-12 h-12 rounded-full bg-primary-100 flex items-center justify-center">
             <Icon className="w-6 h-6 text-primary-600" />
           </div>
         </div>
         <div className="flex-1">
-          <div className="flex items-center space-x-2 mb-3">
-            <span className="text-primary-600 font-bold">STEP {number}:</span>
-            <h3 className="text-xl font-bold text-gray-900">{title}</h3>
+          <div className="flex max-sm:flex-col items-center space-x-2 mb-3">
+            <span className="max-sm:rounded-lg max-sm:w-full max-sm:mb-3 max-sm:p-2 max-sm:bg-primary-100 text-primary-600 font-bold">STEP {number}:</span>
+            <h3 className="max-sm:text-[16px] max-sm:text-left text-xl font-bold text-gray-900">{title}</h3>
           </div>
           <ul className="space-y-2">
             {points.map((point, index) => (
               <li key={index} className="flex items-start space-x-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-primary-500 mt-2 flex-shrink-0"></span>
-                <span className="text-gray-600">{point}</span>
+                <span className="max-sm:text-left text-gray-600">{point}</span>
               </li>
             ))}
           </ul>

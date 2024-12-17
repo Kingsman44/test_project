@@ -15,18 +15,17 @@ const PropertySection = ({ title, description, icon: Icon, image, onClick, showD
   };
 
   return (
-    <div className="relative min-h-screen snap-start">
+    <div className="relative min-h-screen snap-start" id={title.replace(/\s+/g, '-')}>
       {/* Background Image with Overlay */}
       <div className="absolute inset-0">
-        <img 
-          src={image} 
-          alt={title} 
+        <img
+          src={image}
+          alt={title}
           className="w-full h-full object-cover"
         />
-        {/* Added darker overlay for better text readability */}
         <div className="absolute inset-0 bg-black/40" />
-        <div 
-          className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-primary-900/60 transition-colors cursor-glow" 
+        <div
+          className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-primary-900/60 transition-colors cursor-glow"
           onMouseMove={handleMouseMove}
         />
       </div>
@@ -35,12 +34,8 @@ const PropertySection = ({ title, description, icon: Icon, image, onClick, showD
       <AnimatedElement direction="up" delay={0.2}>
         <div className="relative h-screen flex flex-col items-center justify-center text-center px-4 md:px-8">
           <Icon className="w-16 h-16 text-white mb-6 animate-bounce-slow" />
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-            {title}
-          </h2>
-          <p className="text-xl text-white max-w-xl mb-8">
-            {description}
-          </p>
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">{title}</h2>
+          <p className="text-xl text-white max-w-xl mb-8">{description}</p>
           <button
             onClick={onClick}
             className="px-8 py-4 bg-white text-primary-600 rounded-lg hover:bg-primary-50 transition-all duration-300 transform hover:scale-105 font-semibold"
@@ -77,26 +72,39 @@ const Apartments = () => {
   const containerRef = useRef(null);
 
   useEffect(() => {
-    if (containerRef.current) {
-      containerRef.current.classList.add('smooth-scroll');
-    }
-    return () => {
-      if (containerRef.current) {
-        containerRef.current.classList.remove('smooth-scroll');
+    const sections = document.querySelectorAll('.snap-start');
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+
+          // Auto-scroll the section into full view
+          entry.target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'center',
+          });
+        });
+      },
+      {
+        threshold: 0.5, // Trigger when 50% of the section is visible
       }
-    };
+    );
+
+    sections.forEach((section) => observer.observe(section));
+
+    return () => observer.disconnect();
   }, []);
 
   return (
     <div className="min-h-screen bg-primary-50">
-      <Navbar />
       <div ref={containerRef} className="h-screen snap-y snap-mandatory overflow-y-scroll">
         <PropertySection
           title="Residential Properties"
           description="Find your perfect residential co-ownership match. Our preference system helps you connect with like-minded neighbors who share your values and lifestyle."
           icon={Building2}
           image="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80"
-          onClick={() => navigate('/get-started',{ state: { formType: 0 } })}
+          onClick={() => navigate('/get-started', { state: { formType: 0 } })}
           showDivider={true}
         />
         <PropertySection
@@ -104,7 +112,7 @@ const Apartments = () => {
           description="Connect with compatible business neighbors. Our matching system ensures a harmonious professional environment for your enterprise."
           icon={Briefcase}
           image="https://images.unsplash.com/photo-1582407947304-fd86f028f716?auto=format&fit=crop&q=80"
-          onClick={() => navigate('/get-started',{ state: { formType: 1 } })}
+          onClick={() => navigate('/get-started', { state: { formType: 1 } })}
           showDivider={true}
         />
         <PropertySection
@@ -112,7 +120,7 @@ const Apartments = () => {
           description="Strategic commercial locations for your Agricultural. Invest in premium office spaces and retail properties in prime locations."
           icon={Tractor}
           image="https://images.unsplash.com/photo-1524486361537-8ad15938e1a3?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-          onClick={() => navigate('/get-started',{ state: { formType: 2 } })}
+          onClick={() => navigate('/get-started', { state: { formType: 2 } })}
           showDivider={false}
         />
       </div>

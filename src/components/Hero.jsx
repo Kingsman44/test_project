@@ -17,8 +17,12 @@ import CooperativeHousing from './landing/CooperativeHousing';
 import OwnershipSteps from './landing/OwnershipSteps';
 import FinancialServices from './financial/FinancialServices';
 import ProductsSection from './products/ProductsSection';
+import Apartments from '../pages/Apartments';
+import { useMediaQuery } from 'react-responsive';
 
 const Hero = () => {
+  const isMobile = useMediaQuery({ query: '(max-width: 768px)' }); // Tailwind 'md' breakpoint
+
   const benefits = [
     {
       icon: Leaf,
@@ -65,7 +69,10 @@ const Hero = () => {
       <div className="relative z-10">
         <div className="mx-auto text-center">
           <PropertyShowcase />
-          <PropertyTypes />
+
+          {/* Conditional Rendering */}
+          {isMobile ? <Apartments /> : <PropertyTypes />}
+
           <AnimatedElement direction="up" delay={0.6}>
             <div className="mt-8 py-4">
               <h2 className="text-3xl px-4 font-bold text-gray-900 mb-12">
@@ -80,13 +87,13 @@ const Hero = () => {
               </div>
             </div>
           </AnimatedElement>
+
           <Vision />
           <ProductsSection />
           <OwnershipSteps />
           <IntentionalLivingTable />
-          {/* <FinancialServices /> */}
           <OwnershipComparison />
-          
+
           <AnimatedElement direction="up" delay={0.6}>
             <CustomerFeedback />
           </AnimatedElement>

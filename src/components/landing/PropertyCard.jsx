@@ -16,7 +16,7 @@ const PropertyCard = ({ title, description, sqft, members, image, location, mapU
 
   return (
     <div 
-      className="relative group h-[400px] rounded-xl overflow-hidden cursor-glow"
+      className="relative group max-sm:h-[200px] h-[400px] rounded-xl overflow-hidden cursor-glow"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onMouseMove={handleMouseMove}
@@ -57,7 +57,7 @@ const PropertyCard = ({ title, description, sqft, members, image, location, mapU
         <div className={`transition-all duration-300 ${
           isHovered ? 'max-h-48 opacity-100' : 'max-h-0 opacity-0'
         }`}>
-          <p className="text-white/80 mb-4 line-clamp-2">{description}</p>
+          <p className="text-white/80 max-sm:hidden mb-4 line-clamp-2">{description}</p>
           <div className="flex items-center justify-between">
             <span className="text-xl font-bold text-white">
               {sqft.toLocaleString()} Sq/ft

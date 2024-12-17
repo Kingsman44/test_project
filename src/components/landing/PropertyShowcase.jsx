@@ -44,34 +44,34 @@ const PropertyShowcase = () => {
   return (
     <div className="relative w-full bg-gray-200">
       <AnimatedElement direction="up" delay={0.4}>
-        <div className="max-w-[1920px] mx-auto pb-12">
-          <div className="text-center py-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Featured Properties in {selectedLocation}</h2>
+        <div className="max-w-[1920px] -mt-12 mx-auto pb-12">
+          <div className="text-center p-12">
+            <h2 className="max-sm:text-2xl text-3xl font-bold text-gray-900 mb-4">Featured Properties in {selectedLocation}</h2>
             <p className="text-gray-600">Discover Our Premium Co-ownership Opportunities</p>
           </div>
 
-          <div className="flex pb-8 max-sm:none">
-            <div className="flex-1 grid md:grid-cols-2 gap-8 items-center px-4">
-              <div className="space-y-6">
+          <div className="flex pb-8 max-sm:hidden">
+            <div className="flex-1 max-sm:flex-warp grid md:grid-cols-2 sm:gap-8 items-center px-4">
+              <div className="space-y-6 max-sm:w-[100%]">
                 <AnimatedElement key={currentIndex} direction="left" delay={0.2}>
-                  <h3 className="text-3xl font-bold text-gray-900 mb-4">{property.title}</h3>
-                  <p className="text-gray-600 text-lg mb-6">{property.description}</p>
+                  <h3 className="max-sm:text-2xl max-sm:text-left text-3xl font-bold text-gray-900 mb-4">{property.title}</h3>
+                  <p className="max-sm:text-l max-sm:text-justify text-gray-600 text-lg mb-6">{property.description}</p>
                   
-                  <div className="flex items-center justify-center space-x-8 mb-6">
+                  <div className="flex max-sm:flex-col max-sm:justify-between items-center justify-center sm:space-x-8 mb-6">
                     <div className="flex flex-col items-center">
                       <div className="flex items-center space-x-2">
-                        <span className="text-2xl font-bold text-gray-900">{property.sqft.toLocaleString()}</span>
+                        <span className="max-sm:text-[18px] text-2xl font-bold text-gray-900">{property.sqft.toLocaleString()}</span>
                         <span className="text-gray-600">Sq/ft</span>
                       </div>
                     </div>
-                    <div className="h-12 w-px bg-gray-300"></div>
+                    <div className="max-sm:h-[0px] h-12 w-px bg-gray-300"></div>
                     <div className="flex flex-col items-center">
                       <div className="flex items-center space-x-2">
-                        <span className="text-2xl font-bold text-gray-900">{property.members.toLocaleString()}</span>
+                        <span className="max-sm:text-[18px] text-2xl font-bold text-gray-900">{property.members.toLocaleString()}</span>
                         <span className="text-gray-600">Cobrothers</span>
                       </div>
                     </div>
-                    <div className="h-12 w-px bg-gray-300"></div>
+                    <div className="max-sm:h-[0px] h-12 w-px bg-gray-300"></div>
                     <div className="flex items-center">
                       <a 
                         href={property.mapUrl}
@@ -86,7 +86,7 @@ const PropertyShowcase = () => {
                   </div>
 
                   <button 
-                    className="mt-8 px-8 py-3 get-started-button inline-flex items-center bg-gray-700 text-gray-100 rounded-lg border-2 border-primary-300 transition-all duration-300 text-lg font-semibold hover:bg-primary-300 hover:text-gray-800 hover:border-gray-300 shadow-lg hover:shadow-primary-500/50" 
+                    className="sm:mt-8 max-sm:mb-4 px-8 py-3 get-started-button inline-flex items-center bg-gray-700 text-gray-100 rounded-lg border-2 border-primary-300 transition-all duration-300 text-lg font-semibold hover:bg-primary-300 hover:text-gray-800 hover:border-gray-300 shadow-lg hover:shadow-primary-500/50" 
                     onClick={() => navigate('/get-started',{ state: { property: property.title } })}
                   >
                     <span>Join Community</span>
@@ -96,7 +96,7 @@ const PropertyShowcase = () => {
               </div>
 
               <div 
-                className="relative h-[600px] rounded-2xl overflow-hidden group"
+                className="relative max-sm:h-[300px] h-[600px] rounded-2xl overflow-hidden group"
                 style={{
                   backgroundImage: `url(${property.image})`,
                   backgroundSize: 'cover',
@@ -153,7 +153,7 @@ const PropertyShowcase = () => {
             </div>
           </div>
 
-          <div className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 px-4">
+          <div className="sm:mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 px-4">
             {properties.map((property, index) => (
               <AnimatedElement key={index} direction="up" delay={0.2 * (index + 1)}>
                 <PropertyCard {...property} />

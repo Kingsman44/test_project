@@ -10,7 +10,7 @@ const TableRow = ({ heading, actions }) => (
         {actions.map((action, index) => (
           <li key={index} className="flex items-start space-x-2">
             <Check className="w-5 h-5 text-primary-600 flex-shrink-0 mt-0.5" />
-            <span className="text-gray-600">{action}</span>
+            <span className="max-sm:text-left text-gray-600">{action}</span>
           </li>
         ))}
       </ul>
