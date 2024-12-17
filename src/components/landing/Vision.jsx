@@ -99,7 +99,7 @@ const Vision = () => {
           </div>
 
           <div className={`transition-all duration-500 ${
-            activeCard !== null ? 'px-4' : 'flex space-x-4 px-4'
+            activeCard !== null ? 'px-4' : 'flex flex-row flex-wrap sm:flex-nowrap gap-4 px-4'
           }`}>
             {cards.map((card, index) => (
               <div

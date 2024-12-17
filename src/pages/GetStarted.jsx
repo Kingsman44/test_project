@@ -99,8 +99,14 @@ const GetStarted = () => {
   const routeLocation = useRouteLocation();
   var { state } = routeLocation;
   if (state == null) {
-    state = { property: '' }
+    state = { property: '', formType:0 }
   }
+  let formType=state.formType;
+  const { selectedLocation } = useLocation();
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const navigate = useNavigate();
+  const properties = propertiesByLocation[selectedLocation] || [];
+
   const [preferences, setPreferences] = useState({
     ageGroup: [],
     occupation: [],
@@ -110,12 +116,16 @@ const GetStarted = () => {
     dietary: [],
     environment: [],
     pets: [],
-    property: state.property
+    property: state.property,
+    businessType: '',
+    collaboration: [],
+    role: [],
+    agricultureInterest: [],
+    objective: [],
+    managementPreference: '',
+    businessTrade:[],
+    location: selectedLocation
   });
-  const { selectedLocation } = useLocation();
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const navigate = useNavigate();
-  const properties = propertiesByLocation[selectedLocation] || [];
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -356,11 +366,12 @@ const GetStarted = () => {
             <AnimatedElement direction="up" delay={0.1}>
               <div className="bg-white rounded-2xl p-8 shadow-lg border border-primary-100">
                 <h1 className="text-3xl font-bold text-gray-900 mb-8">Preferred Co-Brother</h1>
-                <SelectProperty
+                
+                {properties.length > 0 && <SelectProperty
                   label="Selected Property"
                   selected={preferences.property}
                   onChange={(value) => setPreferences({ ...preferences, property: value })}
-                />
+                />}
                 <p className="text-gray-600 mt-8 mb-3">
                   Help us find your ideal neighbors by sharing your preferences. You can select multiple options for most questions.
                 </p>
@@ -370,63 +381,145 @@ const GetStarted = () => {
                 >
                   Skip Preferences
                 </button>
-
                 <div className="space-y-8">
-                  <MultiSelect
-                    label="1. Age Group"
-                    options={['18-25', '26-35', '36-45', '46-55', '56-65', '66+']}
-                    selected={preferences.ageGroup}
-                    onChange={(value) => setPreferences({ ...preferences, ageGroup: value })}
-                  />
+                  {formType == 0 && (<div>
+                    <MultiSelect
+                      label="1. Age Group"
+                      options={['18-25', '26-35', '36-45', '46-55', '56-65', '66+']}
+                      selected={preferences.ageGroup}
+                      onChange={(value) => setPreferences({ ...preferences, ageGroup: value })}
+                    />
 
-                  <MultiSelect
-                    label="2. Occupation"
-                    options={['Skip', 'Employee', 'Freelancer', 'Business Owner', 'Retired', 'Student', 'Other']}
-                    selected={preferences.occupation}
-                    onChange={(value) => setPreferences({ ...preferences, occupation: value })}
-                  />
+                    <MultiSelect
+                      label="2. Occupation"
+                      options={['Skip', 'Employee', 'Freelancer', 'Business Owner', 'Retired', 'Student', 'Other']}
+                      selected={preferences.occupation}
+                      onChange={(value) => setPreferences({ ...preferences, occupation: value })}
+                    />
 
-                  <MultiSelect
-                    label="3. Annual Earnings"
-                    options={['Skip', 'Above 20 LPA', 'Above 50 LPA', 'Above 1 Cr']}
-                    selected={preferences.earnings}
-                    onChange={(value) => setPreferences({ ...preferences, earnings: value })}
-                  />
+                    <MultiSelect
+                      label="3. Annual Earnings"
+                      options={['Skip', 'Above 20 LPA', 'Above 50 LPA', 'Above 1 Cr']}
+                      selected={preferences.earnings}
+                      onChange={(value) => setPreferences({ ...preferences, earnings: value })}
+                    />
 
-                  <MultiSelect
-                    label="4. Marital Status"
-                    options={['Skip', 'Single', 'Married']}
-                    selected={preferences.maritalStatus}
-                    onChange={(value) => setPreferences({ ...preferences, maritalStatus: value })}
-                  />
+                    <MultiSelect
+                      label="4. Marital Status"
+                      options={['Skip', 'Single', 'Married']}
+                      selected={preferences.maritalStatus}
+                      onChange={(value) => setPreferences({ ...preferences, maritalStatus: value })}
+                    />
 
-                  <MultiSelect
-                    label="5. Do you prefer neighbors with children?"
-                    options={['Skip', 'No Children', 'Children aged 0-5', 'Children aged 6-12', 'Teenagers', 'Adult Children']}
-                    selected={preferences.children}
-                    onChange={(value) => setPreferences({ ...preferences, children: value })}
-                  />
+                    <MultiSelect
+                      label="5. Do you prefer neighbors with children?"
+                      options={['Skip', 'No Children', 'Children aged 0-5', 'Children aged 6-12', 'Teenagers', 'Adult Children']}
+                      selected={preferences.children}
+                      onChange={(value) => setPreferences({ ...preferences, children: value })}
+                    />
 
-                  <MultiSelect
-                    label="6. Dietary Preference"
-                    options={['Skip', 'Vegetarian', 'Non-Vegetarian', 'Vegan']}
-                    selected={preferences.dietary}
-                    onChange={(value) => setPreferences({ ...preferences, dietary: value })}
-                  />
+                    <MultiSelect
+                      label="6. Dietary Preference"
+                      options={['Skip', 'Vegetarian', 'Non-Vegetarian', 'Vegan']}
+                      selected={preferences.dietary}
+                      onChange={(value) => setPreferences({ ...preferences, dietary: value })}
+                    />
 
-                  <MultiSelect
-                    label="7. Environment"
-                    options={['Skip', 'Quiet', 'Social', 'Active']}
-                    selected={preferences.environment}
-                    onChange={(value) => setPreferences({ ...preferences, environment: value })}
-                  />
+                    <MultiSelect
+                      label="7. Environment"
+                      options={['Skip', 'Quiet', 'Social', 'Active']}
+                      selected={preferences.environment}
+                      onChange={(value) => setPreferences({ ...preferences, environment: value })}
+                    />
 
-                  <MultiSelect
-                    label="8. Do you prefer neighbors with pets? If yes, which ones are you okay with?"
-                    options={['Skip', 'No Pets', 'Dog', 'Cat', 'Bird', 'Fish', 'Reptile', 'Others']}
-                    selected={preferences.pets}
-                    onChange={(value) => setPreferences({ ...preferences, pets: value })}
-                  />
+                    <MultiSelect
+                      label="8. Do you prefer neighbors with pets? If yes, which ones are you okay with?"
+                      options={['Skip', 'No Pets', 'Dog', 'Cat', 'Bird', 'Fish', 'Reptile', 'Others']}
+                      selected={preferences.pets}
+                      onChange={(value) => setPreferences({ ...preferences, pets: value })}
+                    /></div>)}
+
+
+                  {formType === 1 && (
+                    <>
+                      <MultiSelect
+                        label="1. Age Group"
+                        options={['18-25', '26-35', '36-45', '46-55', '56-65', '66+']}
+                        selected={preferences.ageGroup}
+                        onChange={(value) => setPreferences({ ...preferences, ageGroup: value })}
+                      />
+
+                      <MultiSelect
+                        label="2. Occupation"
+                        options={['Skip', 'Employee', 'Freelancer', 'Business Owner', 'Retired', 'Student', 'Other']}
+                        selected={preferences.occupation}
+                        onChange={(value) => setPreferences({ ...preferences, occupation: value })}
+                      />
+
+                      <MultiSelect
+                        label="3. Annual Earnings"
+                        options={['Skip', 'Above 20 LPA', 'Above 50 LPA', 'Above 1 Cr']}
+                        selected={preferences.earnings}
+                        onChange={(value) => setPreferences({ ...preferences, earnings: value })}
+                      />
+                      <MultiSelect
+                        label="4. Business Type"
+                        options={['Skip', 'Rental', 'Co-owned', 'Owned', 'Leased']}
+                        selected={preferences.businessType}
+                        onChange={(value) => setPreferences({ ...preferences, businessType: value })}
+                      />
+                      <MultiSelect
+                        label="5. Collaboration"
+                        options={['Skip', 'Investment Opportunities', 'Rental Spaces', 'Co-Working Spaces', 'Franchising', 'Other']}
+                        selected={preferences.collaboration}
+                        onChange={(value) => setPreferences({ ...preferences, collaboration: value })}
+                      />
+                      <MultiSelect
+                        label="6. Business Trade"
+                        options={['Skip', 'Education', 'Amusement Park', 'Warehouse', 'Industrial', 'Others']}
+                        selected={preferences.businessTrade}
+                        onChange={(value) => setPreferences({ ...preferences, collaboration: businessTrade })}
+                      />
+                    </>
+                  )}
+
+                  {formType === 2 && (
+                    <>
+                      <MultiSelect
+                        label="1. Age Group"
+                        options={['18-25', '26-35', '36-45', '46-55', '56-65', '66+']}
+                        selected={preferences.ageGroup}
+                        onChange={(value) => setPreferences({ ...preferences, ageGroup: value })}
+                      />
+
+                      <MultiSelect
+                        label="2. Occupation"
+                        options={['Skip', 'Employee', 'Freelancer', 'Business Owner', 'Retired', 'Student', 'Other']}
+                        selected={preferences.occupation}
+                        onChange={(value) => setPreferences({ ...preferences, occupation: value })}
+                      />
+
+                      <MultiSelect
+                        label="3. Annual Earnings"
+                        options={['Skip', 'Above 20 LPA', 'Above 50 LPA', 'Above 1 Cr']}
+                        selected={preferences.earnings}
+                        onChange={(value) => setPreferences({ ...preferences, earnings: value })}
+                      />
+                      <MultiSelect
+                        label="4. Type of Agriculture Interest"
+                        options={['Skip', 'Crop Farming', 'Horticulture', 'Livestock Farming', 'Organic Farming', 'Agroforestry', 'Aquaculture']}
+                        selected={preferences.agricultureInterest}
+                        onChange={(value) => setPreferences({ ...preferences, agricultureInterest: value })}
+                      />
+                      <MultiSelect
+                        label="5. Management Preference"
+                        options={['Skip', 'Shared Management', 'Independent Operations']}
+                        selected={preferences.managementPreference}
+                        onChange={(value) => setPreferences({ ...preferences, managementPreference: value })}
+                      />
+                    </>
+                  )}
+
 
                   <button
                     type="submit"

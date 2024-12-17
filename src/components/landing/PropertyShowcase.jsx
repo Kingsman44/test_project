@@ -39,7 +39,7 @@ const PropertyShowcase = () => {
   const nextPropertyIndex = (currentIndex + 1) % properties.length;
   const nextPropertyData = properties[nextPropertyIndex];
 
-  if (!property) return null;
+  if (!property || properties.length ==0) return null;
 
   return (
     <div className="relative w-full bg-gray-200">
