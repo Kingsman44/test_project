@@ -7,8 +7,8 @@ const ContactInfo = ({ icon: Icon, title, content }) => (
       <Icon className="w-6 h-6 text-primary-600" />
     </div>
     <div>
-      <h3 className="font-medium text-gray-900">{title}</h3>
-      <p className="text-gray-600">{content}</p>
+      <h3 className="font-medium text-left text-gray-900">{title}</h3>
+      <p className="text-left text-gray-600">{content}</p>
     </div>
   </div>
 );
@@ -43,17 +43,27 @@ const ContactSection = () => {
               <ContactInfo
                 icon={Phone}
                 title="Phone"
-                content="+91 (555) 123-4567"
+                content="080-85758575 • 080-88117744 • 080-22111008"
               />
+               {/* <ContactInfo
+                icon={Phone}
+                title="Phone"
+                content="080 88117744"
+              />
+               <ContactInfo
+                icon={Phone}
+                title="Phone"
+                content="080 22111008"
+              /> */}
               <ContactInfo
                 icon={Mail}
                 title="Email"
-                content="cobrother.com@gmail.com"
+                content="hello@cobrother.com"
               />
               <ContactInfo
                 icon={MapPin}
                 title="Office"
-                content="123 Business Avenue, Mumbai"
+                content="27 3rd Floor, D block, Shinde complex, Neetigin Road, Hubli, KA, IN (580029)"
               />
             </div>
 

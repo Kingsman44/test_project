@@ -1,5 +1,5 @@
 import React from 'react';
-import { Building2, Briefcase } from 'lucide-react';
+import { Building2, Briefcase, Tractor } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import AnimatedElement from '../animations/AnimatedElement';
 
@@ -16,7 +16,7 @@ const PropertyCard = ({ title, description, icon: Icon, backgroundUrl, delay }) 
   return (
     <AnimatedElement direction="up" delay={delay}>
       <Link 
-        to="/bond"
+        to="/apartments"
         className="relative group block h-[400px] rounded-2xl overflow-hidden cursor-glow"
         onMouseMove={handleMouseMove}
       >
@@ -55,7 +55,7 @@ const PropertyTypes = () => {
         </h2>
       </AnimatedElement>
       
-      <div className="grid md:grid-cols-2 gap-8 max-w-7xl mx-auto px-4">
+      <div className="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto px-4">
         <PropertyCard
           title="Residential Properties"
           description="Discover premium residential spaces designed for modern living. Find your perfect home among our carefully curated selection of properties."
@@ -68,6 +68,13 @@ const PropertyTypes = () => {
           description="Strategic commercial locations for your enterprise. Invest in premium office spaces and retail properties in prime locations."
           icon={Briefcase}
           backgroundUrl="https://images.unsplash.com/photo-1582407947304-fd86f028f716?auto=format&fit=crop&q=80"
+          delay={0.8}
+        />
+        <PropertyCard
+          title="Agricultural Properties"
+          description="Strategic commercial locations for your Agricultural. Invest in premium office spaces and retail properties in prime locations."
+          icon={Tractor}
+          backgroundUrl="https://images.unsplash.com/photo-1524486361537-8ad15938e1a3?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
           delay={0.8}
         />
       </div>

@@ -9,12 +9,6 @@ const FooterLinks = () => {
       { name: 'Careers', path: '/careers' },
       { name: 'Blog', path: '/blog' }
     ]},
-    { title: 'Resources', items: [
-      { name: 'Documentation', path: '/docs' },
-      { name: 'Support', path: '/support' },
-      { name: 'Terms of Service', path: '/terms' },
-      { name: 'Privacy Policy', path: '/privacy' }
-    ]},
     { title: 'Properties', items: [
       { name: 'Residential', path: '/apartments' },
       { name: 'Commercial', path: '/apartments' },

@@ -15,15 +15,15 @@ const FooterContact = () => {
       <div className="space-y-3">
         <ContactItem 
           icon={Phone} 
-          text="+91 (555) 123-4567" 
+          text="080-85758575" 
         />
         <ContactItem 
           icon={Mail} 
-          text="cobrother.com@gmail.com" 
+          text="hello@cobrother.com" 
         />
         <ContactItem 
           icon={MapPin} 
-          text="123 Business Avenue, Mumbai" 
+          text="27, D block, Shinde complex, Hubli" 
         />
       </div>
     </div>

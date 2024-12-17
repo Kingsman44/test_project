@@ -41,7 +41,7 @@ const ImageCarousel = () => {
           className={`absolute inset-0 transition-opacity duration-2000 ease-in-out
             ${index === currentIndex ? 'opacity-100' : 'opacity-0'}`}
         >
-          <div 
+          <div
             className="w-full h-full bg-cover bg-center bg-no-repeat"
             style={{ backgroundImage: `url(${image.url})` }}
           />
@@ -71,30 +71,6 @@ const ImageCarousel = () => {
             Join CoBrothers <ArrowRight className="ml-2 w-6 h-6" />
           </Link>
         </div>
-
-<div className="w-[500px] bg-white/80 p-2 m-5 rounded-xl backdrop-blur overflow-hidden">
-  <div className="relative">
-    <img 
-      src="https://plus.unsplash.com/premium_photo-1664116928635-83695cb3da3c?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-      alt="Agricultural Land"
-      className="w-full h-[300px] object-cover rounded-xl"
-    />
-    {/* Text Overlay */}
-    <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/10 text-white text-xl font-semibold rounded-xl">
-      Agricultural Land at Hubli
-        <div className="text-center">
-    <Link
-      to="/get-started"
-      state={{property:'Hubli'}}
-      className="mt-4 inline-flex items-center px-6 py-3 bg-primary-600/80 hover:bg-primary-600 rounded-lg transition-all duration-300 text-white shadow-lg"
-    >
-      ₹9/sq.ft Only <ArrowRight className="ml-2 w-5 h-5" />
-    </Link>
-  </div>
-    </div>
-  </div>
-
-</div>
       </div>
 
       {/* Bottom Fade */}

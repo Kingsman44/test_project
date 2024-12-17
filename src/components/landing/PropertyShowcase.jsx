@@ -44,7 +44,7 @@ const PropertyShowcase = () => {
   return (
     <div className="relative w-full bg-gray-200">
       <AnimatedElement direction="up" delay={0.4}>
-        <div className="max-w-[1920px] mx-auto">
+        <div className="max-w-[1920px] mx-auto pb-12">
           <div className="text-center py-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Featured Properties in {selectedLocation}</h2>
             <p className="text-gray-600">Discover Our Premium Co-ownership Opportunities</p>
@@ -57,7 +57,7 @@ const PropertyShowcase = () => {
                   <h3 className="text-3xl font-bold text-gray-900 mb-4">{property.title}</h3>
                   <p className="text-gray-600 text-lg mb-6">{property.description}</p>
                   
-                  <div className="flex items-center space-x-8 mb-6">
+                  <div className="flex items-center justify-center space-x-8 mb-6">
                     <div className="flex flex-col items-center">
                       <div className="flex items-center space-x-2">
                         <span className="text-2xl font-bold text-gray-900">{property.sqft.toLocaleString()}</span>
@@ -134,7 +134,7 @@ const PropertyShowcase = () => {
             </div>
 
             <div 
-              className="w-[10%] relative cursor-pointer group"
+              className="w-[10%] relative rounded-2xl cursor-pointer group"
               onClick={nextProperty}
               style={{
                 backgroundImage: `url(${nextPropertyData.image})`,
@@ -142,10 +142,10 @@ const PropertyShowcase = () => {
                 backgroundPosition: 'center',
               }}
             >
-              <div className="absolute inset-0 group-hover:bg-primary-50/200 transition-colors">
+              <div className="absolute inset-0 rounded-2xl group-hover:bg-primary-50/200 transition-colors">
                 <div className="absolute inset-0 flex items-center justify-center"></div>
               </div>
-              <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-primary-900 to-transparent">
+              <div className="absolute rounded-2xl bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-primary-900 to-transparent">
                 <p className="text-white text-sm font-medium truncate">
                   {nextPropertyData.title}
                 </p>

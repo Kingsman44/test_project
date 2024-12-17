@@ -65,6 +65,7 @@ const Hero = () => {
       <div className="relative z-10">
         <div className="mx-auto text-center">
           <PropertyShowcase />
+          <PropertyTypes />
           <AnimatedElement direction="up" delay={0.6}>
             <div className="mt-8 py-4">
               <h2 className="text-3xl px-4 font-bold text-gray-900 mb-12">
@@ -83,8 +84,7 @@ const Hero = () => {
           <ProductsSection />
           <OwnershipSteps />
           <IntentionalLivingTable />
-          <FinancialServices />
-          <PropertyTypes />
+          {/* <FinancialServices /> */}
           <OwnershipComparison />
           
           <AnimatedElement direction="up" delay={0.6}>

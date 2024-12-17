@@ -48,15 +48,15 @@ const Footer = () => {
             <ul className="space-y-2">
               <li className="flex items-center text-gray-400">
                 <Phone className="h-4 w-4 mr-2 text-purple-400" />
-                +91 (555) 123-4567
+                080-85758575
               </li>
               <li className="flex items-center text-gray-400">
                 <Mail className="h-4 w-4 mr-2 text-purple-400" />
-                cobrother.com@gmail.com
+                hello@cobrother.com
               </li>
               <li className="flex items-center text-gray-400">
                 <MapPin className="h-4 w-4 mr-2 text-purple-400" />
-                123 Business Avenue, Mumbai
+                27 3rd Floor, D block, Shinde complex, Neetigin Road, Hubli, KA, IN (580029)
               </li>
             </ul>
           </div>

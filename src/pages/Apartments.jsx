@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { Building2, Briefcase } from 'lucide-react';
+import { Building2, Briefcase, Tractor } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import AnimatedElement from '../components/animations/AnimatedElement';
@@ -96,16 +96,23 @@ const Apartments = () => {
           description="Find your perfect residential co-ownership match. Our preference system helps you connect with like-minded neighbors who share your values and lifestyle."
           icon={Building2}
           image="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80"
-          onClick={() => navigate('/bond')}
+          onClick={() => navigate('/get-started')}
           showDivider={true}
         />
-        
         <PropertySection
           title="Business Properties"
           description="Connect with compatible business neighbors. Our matching system ensures a harmonious professional environment for your enterprise."
           icon={Briefcase}
           image="https://images.unsplash.com/photo-1582407947304-fd86f028f716?auto=format&fit=crop&q=80"
-          onClick={() => navigate('/bond')}
+          onClick={() => navigate('/get-started')}
+          showDivider={true}
+        />
+        <PropertySection
+          title="Agricultural Properties"
+          description="Strategic commercial locations for your Agricultural. Invest in premium office spaces and retail properties in prime locations."
+          icon={Tractor}
+          image="https://images.unsplash.com/photo-1524486361537-8ad15938e1a3?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          onClick={() => navigate('/get-started')}
           showDivider={false}
         />
       </div>
