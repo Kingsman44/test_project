@@ -1,8 +1,9 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Building2, Briefcase, Tractor } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import AnimatedElement from '../components/animations/AnimatedElement';
+import axios from 'axios';
 
 const PropertySection = ({ title, description, icon: Icon, image, onClick, showDivider }) => {
   const handleMouseMove = (e) => {
@@ -70,6 +71,24 @@ const PropertySection = ({ title, description, icon: Icon, image, onClick, showD
 const Apartments = () => {
   const navigate = useNavigate();
   const containerRef = useRef(null);
+  const [category, setCategory] = useState([]);
+
+  useEffect(() => {
+    async function fetchCategory() {
+      try {
+        const { data } = await axios.get('/api/category/find');
+        if (data.success) {
+          setCategory(data.data);
+        } else {
+          alert("Error Fetching categories");
+        }
+      } catch (e) {
+        console.log(`Error: ${String(e)}`);
+      }
+    }
+
+    fetchCategory();
+  }, [])
 
   useEffect(() => {
     const sections = document.querySelectorAll('.snap-start');
@@ -99,7 +118,7 @@ const Apartments = () => {
   return (
     <div className="min-h-screen bg-primary-50">
       <div ref={containerRef} className="h-screen snap-y snap-mandatory overflow-y-scroll">
-        <PropertySection
+        {/* <PropertySection
           title="Residential Properties"
           description="Find your perfect residential co-ownership match. Our preference system helps you connect with like-minded neighbors who share your values and lifestyle."
           icon={Building2}
@@ -122,7 +141,18 @@ const Apartments = () => {
           image="https://images.unsplash.com/photo-1524486361537-8ad15938e1a3?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
           onClick={() => navigate('/get-started', { state: { formType: 2 } })}
           showDivider={false}
-        />
+        /> */}
+        {category.map((val) => {
+          return <PropertySection
+            key={val._id}
+            title={val.category}
+            description={val.description}
+            image={val.image}
+            delay={0}
+            icon={Building2}
+            onClick={() => navigate('/get-started', { state: { category: val._id } })}
+          />
+        })}
       </div>
     </div>
   );

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Mail, Phone, MapPin, Send, Clock } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import AnimatedElement from '../components/animations/AnimatedElement';
+import axios from 'axios';
 
 const ContactInfo = ({ icon: Icon, title, content }) => (
   <AnimatedElement direction="up" delay={0.2}>
@@ -25,8 +26,16 @@ const Contact = () => {
     message: ''
   });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    try {
+      const {data} = await axios.post('/api/contact/',formData);
+      if(data.success) {
+        console.log("Sent!!");
+      }
+    } catch(e) {
+      console.log("Error");
+    }
     console.log('Form submitted:', formData);
   };
 

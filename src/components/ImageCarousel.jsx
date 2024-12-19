@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import Logo from '../assets/logo.png';
 import { Building2, Briefcase, Tractor } from 'lucide-react';
 import AnimatedElement from './animations/AnimatedElement';
+import axios from 'axios';
+
 
 const images = [
   {
@@ -47,7 +49,7 @@ const PropertyCard = ({ title, description, icon: Icon, backgroundUrl, delay }) 
         </div>
 
         <div className="relative max-sm:h-[300px] h-full flex flex-col items-center justify-center text-center sm:p-8">
-          <Icon className="w-16 h-16 max-sm:-mt-3 max-sm:h-6 max-sm:w-6 text-white mb-2 sm:mb-6 transform group-hover:scale-110 transition-transform duration-500" />
+          {/* <Icon className="w-16 h-16 max-sm:-mt-3 max-sm:h-6 max-sm:w-6 text-white mb-2 sm:mb-6 transform group-hover:scale-110 transition-transform duration-500" /> */}
           <h3 className="max-sm:text-xl sm:my-auto text-3xl font-bold text-white">{title}</h3>
           <div className="mt-6 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0">
             <button className="px-6 py-3 bg-white text-primary-600 rounded-lg font-semibold hover:bg-primary-50 transition-colors">
@@ -62,6 +64,24 @@ const PropertyCard = ({ title, description, icon: Icon, backgroundUrl, delay }) 
 
 const ImageCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [category, setCategory] = useState([]);
+
+  useEffect(() => {
+    async function fetchCategory() {
+      try {
+        const { data } = await axios.get('/api/category/find');
+        if (data.success) {
+          setCategory(data.data);
+        } else {
+          alert("Error Fetching categories");
+        }
+      } catch (e) {
+        console.log(`Error: ${String(e)}`);
+      }
+    }
+
+    fetchCategory();
+  }, [])
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -108,8 +128,8 @@ const ImageCarousel = () => {
           </p>
         </div>
       </div>
-      <div className="flex -mt-4 overflow-x-auto max-sm:space-x-2 md:grid md:grid-cols-3 max-sm:gap-2 gap-2 max-w-7xl mx-auto px-4">
-        <PropertyCard
+      {category.length > 0 && <div className="flex -mt-4 overflow-x-auto max-sm:space-x-2 md:grid md:grid-cols-3 max-sm:gap-2 gap-2 max-w-7xl mx-auto px-4">
+        {/* <PropertyCard
           title="Residential Properties"
           description="Discover premium residential spaces designed for modern living. Find your perfect home among our carefully curated selection of properties."
           icon={Building2}
@@ -129,8 +149,18 @@ const ImageCarousel = () => {
           icon={Tractor}
           backgroundUrl="https://images.unsplash.com/photo-1524486361537-8ad15938e1a3?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
           delay={0.8}
-        />
-      </div>
+        /> */}
+        {category.map((val) => {
+          return <PropertyCard
+            key={val._id}
+            title={val.category}
+            description={val.description}
+            backgroundUrl={val.image}
+            delay={0}
+            icon={Building2}
+          />
+        })}
+      </div>}
       <div className='flex items-center justify-center py-8'>
         <Link
           to="/get-started"

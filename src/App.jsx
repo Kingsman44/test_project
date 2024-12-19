@@ -13,6 +13,9 @@ import Contact from './pages/Contact';
 import About from './pages/About';
 import Bond from './pages/Bond';
 import GetStarted from './pages/GetStarted';
+import axios from 'axios';
+
+axios.defaults.baseURL="http://localhost:8000"
 
 function App() {
   return (

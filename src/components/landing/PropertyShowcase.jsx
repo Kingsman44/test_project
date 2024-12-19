@@ -5,15 +5,29 @@ import PropertyCard from './PropertyCard';
 import { useNavigate } from 'react-router-dom';
 import { useLocation } from '../../context/LocationContext';
 import { propertiesByLocation } from '../../data/properties';
+import axios from 'axios';
 
 const PropertyShowcase = () => {
   const { selectedLocation } = useLocation();
   const [currentIndex, setCurrentIndex] = useState(0);
   const navigate = useNavigate();
 
+  const [properties, setProperties] = useState(propertiesByLocation[selectedLocation] || []);
 
-  // Get properties for the selected location
-  const properties = propertiesByLocation[selectedLocation] || [];
+  useEffect(() => {
+    async function fetchProperties() {
+      try {
+        const { data } = await axios.get(`/api/property/find/${selectedLocation}`);
+        if (data.success) {
+          setProperties(data.data);
+        }
+      } catch (e) {
+        console.log(`Error: ${String(e)}`);
+      }
+    }
+    console.log("Fetch Props");
+    fetchProperties();
+  }, [selectedLocation])
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -44,7 +58,7 @@ const PropertyShowcase = () => {
   return (
     <div className="relative w-full bg-gray-200">
       <AnimatedElement direction="up" delay={0.4}>
-        <div className="max-w-[1920px] -mt-12 mx-auto pb-12">
+        <div className="max-w-[1920px] max-sm:-mt-12 mx-auto pb-12">
           <div className="text-center p-12">
             <h2 className="max-sm:text-2xl text-3xl font-bold text-gray-900 mb-4">Featured Properties in {selectedLocation}</h2>
             <p className="text-gray-600">Discover Our Premium Co-ownership Opportunities</p>
@@ -87,7 +101,7 @@ const PropertyShowcase = () => {
 
                   <button 
                     className="sm:mt-8 max-sm:mb-4 px-8 py-3 get-started-button inline-flex items-center bg-gray-700 text-gray-100 rounded-lg border-2 border-primary-300 transition-all duration-300 text-lg font-semibold hover:bg-primary-300 hover:text-gray-800 hover:border-gray-300 shadow-lg hover:shadow-primary-500/50" 
-                    onClick={() => navigate('/get-started',{ state: { property: property.title } })}
+                    onClick={() => navigate('/get-started',{ state: { property: property.title, category: property.categoryId } })}
                   >
                     <span>Join Community</span>
                     <ArrowRight className="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform" />

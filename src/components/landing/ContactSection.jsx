@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Send, Mail, Phone, MapPin } from 'lucide-react';
+import axios from 'axios';
 
 const ContactInfo = ({ icon: Icon, title, content }) => (
   <div className="flex items-start space-x-4">
@@ -21,9 +22,16 @@ const ContactSection = () => {
     message: ''
   });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission
+    try {
+      const {data} = await axios.post('/api/contact/',formData);
+      if(data.success) {
+        console.log("Sent!!");
+      }
+    } catch(e) {
+      console.log("Error");
+    }
     console.log('Form submitted:', formData);
   };
 

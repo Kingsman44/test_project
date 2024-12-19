@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { MapPin, Users, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-const PropertyCard = ({ title, description, sqft, members, image, location, mapUrl }) => {
+const PropertyCard = ({ title, description, sqft, members, image, location, mapUrl, categoryId }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   const handleMouseMove = (e) => {
@@ -64,7 +64,7 @@ const PropertyCard = ({ title, description, sqft, members, image, location, mapU
             </span>
             <Link 
               to="/get-started"
-              state={{ property: title }}
+              state={{ property: title, category: categoryId }}
               className="flex items-center space-x-2 bg-white/10 hover:bg-white/20 text-white px-4 py-2 rounded-lg transition-colors"
             >
               <span>Join Now</span>

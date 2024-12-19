@@ -99,42 +99,133 @@ const GetStarted = () => {
   const routeLocation = useRouteLocation();
   var { state } = routeLocation;
   if (state == null) {
-    state = { property: '', formType:0 }
+    state = { property: '', category: '' }
   }
-  let formType=state.formType;
+  if(!("property" in state)) {
+    state.property='';
+  }
+  if(!("category" in state)) {
+    state.category='';
+  }
+  const [form, setForm] = useState([
+    {
+      "name": "Age Group",
+      "type": "multiselect",
+      "options": ["18-25", "26-35", "36-45", "46-55", "56-65", "66+"]
+    },
+    {
+      "name": "Occupation",
+      "type": "multiselect",
+      "options": ["Skip", "Employee", "Freelancer", "Business Owner", "Retired", "Student", "Other"]
+    },
+    {
+      "name": "Annual Earnings",
+      "type": "multiselect",
+      "options": ["Skip", "Above 20 LPA", "Above 50 LPA", "Above 1 Cr"]
+    },
+    {
+      "name": "Marital Status",
+      "type": "multiselect",
+      "options": ["Skip", "Single", "Married"]
+    },
+    {
+      "name": "Do you prefer neighbors with children?",
+      "type": "multiselect",
+      "options": ["Skip", "No Children", "Children aged 0-5", "Children aged 6-12", "Teenagers", "Adult Children"]
+    },
+    {
+      "name": "Dietary Preference",
+      "type": "multiselect",
+      "options": ["Skip", "Vegetarian", "Non-Vegetarian", "Vegan"]
+    },
+    {
+      "name": "Environment",
+      "type": "multiselect",
+      "options": ["Skip", "Quiet", "Social", "Active"]
+    },
+    {
+      "name": "Do you prefer neighbors with pets? If yes, which ones are you okay with?",
+      "type": "multiselect",
+      "options": ["Skip", "No Pets", "Dog", "Cat", "Bird", "Fish", "Reptile", "Others"]
+    }
+  ]);
   const { selectedLocation } = useLocation();
   const [currentIndex, setCurrentIndex] = useState(0);
   const navigate = useNavigate();
-  const properties = propertiesByLocation[selectedLocation] || [];
+  const [properties, setProperties] = useState(propertiesByLocation[selectedLocation] || []);
 
   const [preferences, setPreferences] = useState({
-    ageGroup: [],
-    occupation: [],
-    earnings: [],
-    maritalStatus: [],
-    children: [],
-    dietary: [],
-    environment: [],
-    pets: [],
+    "Age Group": [],
+    "Occupation": [],
+    "Annual Earnings": [],
+    "Marital Status": [],
+    "Do you prefer neighbors with children?": [],
+    "Dietary Preference": [],
+    "Environment": [],
+    "Do you prefer neighbors with pets? If yes, which ones are you okay with?": [],
     property: state.property,
-    businessType: '',
-    collaboration: [],
-    role: [],
-    agricultureInterest: [],
-    objective: [],
-    managementPreference: '',
-    businessTrade:[],
     location: selectedLocation
   });
+
+  useEffect(() => {
+    async function fetchCategoryForms() {
+      try {
+        const { data } = await axios.get(`/api/category/form/find/${state.category}`);
+        if (data.success) {
+          if ("formFields" in data.data) {
+            let pref = {}
+            //console.log(data);
+            data.data.formFields.forEach(form => {
+              if (form.type == "multiselect") {
+                pref[form.name] = []
+              } else {
+                pref[form.name] = ''
+              }
+            });
+            pref["property"] = state.property;
+            pref["location"] = selectedLocation;
+            console.log(pref);
+            setPreferences(pref);
+            setForm(data.data.formFields);
+          } else {
+            console.log("No form present, using default")
+          }
+        } else {
+          alert("Error Fetching categories");
+        }
+      } catch (e) {
+        console.log(`Error: ${String(e)}`);
+      }
+    }
+    if (state.category != '') {
+      fetchCategoryForms();
+    }
+  }, []);
+
+  useEffect(() => {
+    async function fetchProperties() {
+      try {
+        const { data } = await axios.get(`/api/property/find/${selectedLocation}`);
+        if (data.success) {
+          setProperties(data.data);
+        }
+      } catch (e) {
+        console.log(`Error: ${String(e)}`);
+      }
+    }
+    console.log("Fetch Props");
+    fetchProperties();
+  }, [selectedLocation])
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     let form = preferences;
     form.phoneNumber = phoneNumber;
+    form.email = email;
     console.log("Test")
     try {
-      const { data } = await axios.post('http://localhost:8000/api/form', form);
-      console.log(data);
+      const { data } = await axios.post('http://localhost:8000/api/form/save', form);
+      //console.log(data);
       if (data.success == true) {
         toast.success('Form submitted Successfully, redirecting to home page', {
           position: 'top-right',
@@ -224,9 +315,12 @@ const GetStarted = () => {
       console.log('Google Sign-In Successful:', { user, token });
       if (user.phoneNumber) {
         setPhoneNumber(user.phoneNumber);
+        setEmail(user.email);
         setPage('done');
       } else {
-        setError('Your Account is not linked with phone number')
+        //setError('Your Account is not linked with phone number')
+        setEmail(user.email);
+        setPage('done');
       }
     } catch (err) {
       console.error('Error signing in with Google:', err);
@@ -366,7 +460,7 @@ const GetStarted = () => {
             <AnimatedElement direction="up" delay={0.1}>
               <div className="bg-white rounded-2xl p-8 shadow-lg border border-primary-100">
                 <h1 className="text-3xl font-bold text-gray-900 mb-8">Preferred Co-Brother</h1>
-                
+
                 {properties.length > 0 && <SelectProperty
                   label="Selected Property"
                   selected={preferences.property}
@@ -382,7 +476,7 @@ const GetStarted = () => {
                   Skip Preferences
                 </button>
                 <div className="space-y-8">
-                  {formType == 0 && (<div>
+                  {/* {formType == 0 && (<div>
                     <MultiSelect
                       label="1. Age Group"
                       options={['18-25', '26-35', '36-45', '46-55', '56-65', '66+']}
@@ -518,9 +612,35 @@ const GetStarted = () => {
                         onChange={(value) => setPreferences({ ...preferences, managementPreference: value })}
                       />
                     </>
-                  )}
-
-
+                  )} */}
+                  {form.map((val, index) => {
+                    if (val.type === "multiselect") {
+                      return (
+                        <MultiSelect
+                          key={val._id}
+                          label={`${index + 1}. ${val.name}`}
+                          options={val.options}
+                          selected={preferences[val.name]}
+                          onChange={(value) =>
+                            setPreferences({ ...preferences, [val.name]: value })
+                          }
+                        />
+                      );
+                    } else if (val.type === "select") {
+                      return (
+                        <SingleSelect
+                          key={val._id}
+                          label={`${index + 1}. ${val.name}`}
+                          options={val.options}
+                          selected={preferences[val.name]}
+                          onChange={(value) =>
+                            setPreferences({ ...preferences, [val.name]: value })
+                          }
+                        />
+                      );
+                    }
+                    return null;
+                  })}
                   <button
                     type="submit"
                     className="w-full bg-primary-600 text-white py-3 rounded-lg hover:bg-primary-700 transition-all duration-300 transform hover:scale-105 shadow-lg"

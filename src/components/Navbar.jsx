@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Menu, X, MapPin } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useScrollDirection } from '../hooks/useScrollDirection';
 import { useLocation } from '../context/LocationContext';
 import Logo from '../assets/logo.png';
+import axios from 'axios';
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -12,7 +13,23 @@ const Navbar = () => {
   const isVisible = useScrollDirection();
   const { selectedLocation, setSelectedLocation } = useLocation();
 
-  const locations = ['Hubli', 'Delhi', 'Gulbarga', 'Bangalore'];
+  const [locations, setLocations] = useState(["Hubli"]);
+
+  useEffect(() => {
+    async function fetchLocation() {
+      try {
+        const { data } = await axios.get('/api/location/find/');
+        if (data.success) {
+          setLocations(data.data.map(item => item.name));
+        } else {
+          alert("Error Fetching Locations");
+        }
+      } catch (e) {
+        console.log(`Error: ${String(e)}`);
+      }
+    }
+    fetchLocation();
+  }, [])
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
