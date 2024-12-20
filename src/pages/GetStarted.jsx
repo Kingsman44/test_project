@@ -95,6 +95,7 @@ const GetStarted = () => {
   const [error, setError] = useState('');
   const [resendTimer, setResendTimer] = useState(30);
   const [otp, setOtp] = useState('');
+  const [formcategory, setFormCategory] = useState('');
   const [cap, setCap] = useState(false);
   const routeLocation = useRouteLocation();
   var { state } = routeLocation;
@@ -174,7 +175,8 @@ const GetStarted = () => {
         if (data.success) {
           if ("formFields" in data.data) {
             let pref = {}
-            //console.log(data);
+            console.log(data);
+            setFormCategory(data.data.category.category);
             data.data.formFields.forEach(form => {
               if (form.type == "multiselect") {
                 pref[form.name] = []
@@ -219,12 +221,14 @@ const GetStarted = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    let form = preferences;
+    let form = {};
     form.phoneNumber = phoneNumber;
     form.email = email;
+    form.category = formcategory;
+    form.data = preferences;
     console.log("Test")
     try {
-      const { data } = await axios.post('http://localhost:8000/api/form/save', form);
+      const { data } = await axios.post('/api/form/save', form);
       //console.log(data);
       if (data.success == true) {
         toast.success('Form submitted Successfully, redirecting to home page', {

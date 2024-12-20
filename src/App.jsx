@@ -15,7 +15,7 @@ import Bond from './pages/Bond';
 import GetStarted from './pages/GetStarted';
 import axios from 'axios';
 
-axios.defaults.baseURL="http://localhost:8000"
+axios.defaults.baseURL="http://3.109.80.98:8000"
 
 function App() {
   return (
