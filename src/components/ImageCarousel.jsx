@@ -116,11 +116,10 @@ const ImageCarousel = () => {
         {/* Main Content */}
         <div className="flex-1 text-center pt-44 text-gray-600">
           <h1 className="text-3xl sm:text-3xl md:text-5xl mb-8">
-            Join Your{' '}
             <img src={Logo} className="h-40 max-sm:h-16 -mt-16 max-sm:-my-6 -m-12 max-sm:-mx-4 inline drop-shadow-[0_0_10px_rgba(255,255,255,0.8)]" />
-            {' '} who is just Awesome as{' '}
+            {' '} - Just as Awesome as{' '}
             <span className="font-cursive text-4xl sm:text-5xl md:text-6xl bg-gradient-to-r from-primary-200 via-primary-300 to-primary-400 bg-clip-text text-transparent damion-regular">
-              You
+              You!
             </span>
           </h1>
           <p className="text-l mt-4 sm:text-2xl max-sm:-mt-6 mb-12 max-w-3xl mx-auto">

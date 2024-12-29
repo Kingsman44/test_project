@@ -1,24 +1,22 @@
 import React, { useState } from 'react';
-import { Mail, Phone, MapPin, Send, Clock } from 'lucide-react';
-import Navbar from '../components/Navbar';
-import AnimatedElement from '../components/animations/AnimatedElement';
+import { Send, Mail, Phone, MapPin } from 'lucide-react';
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ContactInfo = ({ icon: Icon, title, content }) => (
-  <AnimatedElement direction="up" delay={0.2}>
-    <div className="flex items-center space-x-4 p-6 bg-white rounded-xl shadow-sm border border-primary-100">
-      <div className="w-12 h-12 rounded-full bg-primary-50 flex items-center justify-center">
-        <Icon className="w-6 h-6 text-primary-600" />
-      </div>
-      <div>
-        <h3 className="text-gray-900 font-semibold">{title}</h3>
-        <p className="text-gray-600">{content}</p>
-      </div>
+  <div className="flex items-start space-x-4">
+    <div className="p-3 bg-primary-100 rounded-lg">
+      <Icon className="w-6 h-6 text-primary-600" />
     </div>
-  </AnimatedElement>
+    <div>
+      <h3 className="font-medium text-left text-gray-900">{title}</h3>
+      <p className="text-left text-gray-600" dangerouslySetInnerHTML={{ __html: content }}></p>
+    </div>
+  </div>
 );
 
-const Contact = () => {
+const ContactSection = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -29,145 +27,129 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const {data} = await axios.post('/api/contact/',formData);
-      if(data.success) {
-        console.log("Sent!!");
+      const { data } = await axios.post('/api/contact/', formData);
+      if (data.success) {
+        toast.success('Message sent successfully!');
+        setFormData({ name: '', email: '', subject: '', message: '' });
       }
-    } catch(e) {
-      console.log("Error");
+    } catch (error) {
+      toast.error('Error sending message. Please try again.');
     }
-    console.log('Form submitted:', formData);
   };
 
   return (
-    <div className="min-h-screen bg-white">
-      <Navbar />
-      <div className="pt-32 pb-16 px-4">
-        <div className="max-w-7xl mx-auto">
-          <AnimatedElement direction="up" delay={0.1}>
-            <div className="text-center mb-16">
-              <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                Get in Touch
-              </h1>
-              <p className="text-gray-600 max-w-2xl mx-auto">
-                Have questions about co-ownership? Our team is here to help you understand the process and explore opportunities.
-              </p>
-            </div>
-          </AnimatedElement>
+    <section className="rounded-xl py-16 bg-white/60 backdrop-blur-lg">
+      <div className="max-w-7xl mx-auto px-4">
+        <div className="grid md:grid-cols-2 gap-12">
+          {/* Contact Information */}
+          <div>
+            <h2 className="text-3xl font-bold text-gray-900 mb-8">Get in Touch</h2>
+            <p className="text-gray-600 mb-12">
+              Have questions about co-ownership? Our team is here to help you understand 
+              the process and explore opportunities.
+            </p>
 
-          <div className="grid md:grid-cols-2 gap-16">
             <div className="space-y-8">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <ContactInfo
-                  icon={Phone}
-                  title="Phone"
-                  content="+91 (555) 123-4567"
-                />
-                <ContactInfo
-                  icon={Mail}
-                  title="Email"
-                  content="cobrother.com@gmail.com"
-                />
-                <ContactInfo
-                  icon={MapPin}
-                  title="Office"
-                  content="123 Business Avenue, Mumbai"
-                />
-                <ContactInfo
-                  icon={Clock}
-                  title="Hours"
-                  content="Mon-Fri: 9AM to 6PM"
-                />
-              </div>
-
-              <AnimatedElement direction="up" delay={0.3}>
-                <div className="bg-white rounded-xl p-8 shadow-sm border border-primary-100">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Office Locations</h2>
-                  <div className="space-y-6">
-                    <div>
-                      <h3 className="text-gray-900 font-semibold mb-2">Mumbai HQ</h3>
-                      <p className="text-gray-600">123 Business Avenue, Mumbai Central</p>
-                    </div>
-                    <div>
-                      <h3 className="text-gray-900 font-semibold mb-2">Bangalore Office</h3>
-                      <p className="text-gray-600">456 Tech Park, Electronic City</p>
-                    </div>
-                    <div>
-                      <h3 className="text-gray-900 font-semibold mb-2">Delhi NCR</h3>
-                      <p className="text-gray-600">789 Business Hub, Gurugram</p>
-                    </div>
-                  </div>
-                </div>
-              </AnimatedElement>
+              <ContactInfo
+                icon={Phone}
+                title="Phone"
+                content="080 85758575 • 080 88117744 • 080 22111008"
+              />
+               {/* <ContactInfo
+                icon={Phone}
+                title="Phone"
+                content="080 88117744"
+              />
+               <ContactInfo
+                icon={Phone}
+                title="Phone"
+                content="080 22111008"
+              /> */}
+              <ContactInfo
+                icon={Mail}
+                title="Email"
+                content="hello@cobrother.com"
+              />
+              <ContactInfo
+                icon={MapPin}
+                title="Office"
+                content="#27 3<sup>rd</sup> Floor, D block, Shinde complex, Neetigin Road, Hubli, Karnataka, IN (580029)"
+              />
             </div>
 
-            <AnimatedElement direction="up" delay={0.4}>
-              <div className="bg-white rounded-xl p-8 shadow-sm border border-primary-100">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">Send us a Message</h2>
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div>
-                    <label htmlFor="name" className="block text-gray-700 mb-2">Name</label>
-                    <input
-                      type="text"
-                      id="name"
-                      value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full px-4 py-2 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-                      placeholder="Your name"
-                      required
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="email" className="block text-gray-700 mb-2">Email</label>
-                    <input
-                      type="email"
-                      id="email"
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full px-4 py-2 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-                      placeholder="Your email"
-                      required
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="subject" className="block text-gray-700 mb-2">Subject</label>
-                    <input
-                      type="text"
-                      id="subject"
-                      value={formData.subject}
-                      onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                      className="w-full px-4 py-2 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-                      placeholder="Message subject"
-                      required
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="message" className="block text-gray-700 mb-2">Message</label>
-                    <textarea
-                      id="message"
-                      rows="4"
-                      value={formData.message}
-                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      className="w-full px-4 py-2 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-                      placeholder="Your message"
-                      required
-                    ></textarea>
-                  </div>
-                  <button
-                    type="submit"
-                    className="w-full bg-primary-600 text-white py-3 rounded-lg hover:bg-primary-700 transition-colors flex items-center justify-center space-x-2"
-                  >
-                    <Send className="w-5 h-5" />
-                    <span>Send Message</span>
-                  </button>
-                </form>
+            {/* Business Hours */}
+            <div className="mt-12">
+              <h3 className="font-medium text-gray-900 mb-4">Business Hours</h3>
+              <div className="space-y-2 text-gray-600">
+                <p>Monday - Friday: 9:00 AM - 6:00 PM</p>
+                <p>Saturday: 10:00 AM - 4:00 PM</p>
+                <p>Sunday: Closed</p>
               </div>
-            </AnimatedElement>
+            </div>
+          </div>
+
+          {/* Contact Form */}
+          <div className="bg-white rounded-xl shadow-lg p-8">
+            <h3 className="text-2xl font-bold text-gray-900 mb-6">Send us a Message</h3>
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div>
+                <label htmlFor="name" className="block text-gray-700 mb-2">Name</label>
+                <input
+                  type="text"
+                  id="name"
+                  value={formData.name}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  className="w-full px-4 py-2 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                  required
+                />
+              </div>
+              <div>
+                <label htmlFor="email" className="block text-gray-700 mb-2">Email</label>
+                <input
+                  type="email"
+                  id="email"
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  className="w-full px-4 py-2 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                  required
+                />
+              </div>
+              <div>
+                <label htmlFor="subject" className="block text-gray-700 mb-2">Subject</label>
+                <input
+                  type="text"
+                  id="subject"
+                  value={formData.subject}
+                  onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                  className="w-full px-4 py-2 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                  required
+                />
+              </div>
+              <div>
+                <label htmlFor="message" className="block text-gray-700 mb-2">Message</label>
+                <textarea
+                  id="message"
+                  rows="4"
+                  value={formData.message}
+                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                  className="w-full px-4 py-2 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                  required
+                ></textarea>
+              </div>
+              <button
+                type="submit"
+                className="w-full bg-primary-600 text-white py-3 rounded-lg hover:bg-primary-700 transition-colors flex items-center justify-center space-x-2"
+              >
+                <Send className="w-5 h-5" />
+                <span>Send Message</span>
+              </button>
+            </form>
           </div>
         </div>
       </div>
-    </div>
+      <ToastContainer position="top-right" />
+    </section>
   );
 };
 
-export default Contact;
+export default ContactSection;

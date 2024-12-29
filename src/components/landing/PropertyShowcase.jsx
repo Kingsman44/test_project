@@ -58,7 +58,7 @@ const PropertyShowcase = () => {
   return (
     <div className="relative w-full bg-gray-200">
       <AnimatedElement direction="up" delay={0.4}>
-        <div className="max-w-[1920px] max-sm:-mt-12 mx-auto pb-12">
+        <div className="max-w-[1920px] mx-auto pb-12">
           <div className="text-center p-12">
             <h2 className="max-sm:text-2xl text-3xl font-bold text-gray-900 mb-4">Featured Properties in {selectedLocation}</h2>
             <p className="text-gray-600">Discover Our Premium Co-ownership Opportunities</p>

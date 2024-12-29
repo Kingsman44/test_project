@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import ImageCarousel from './ImageCarousel';
 import CustomerFeedback from './CustomerFeedback';
 import FaqSection from './landing/FaqSection';
-import ContactSection from './landing/ContactSection';
+import ContactSection from '../pages/Contact';
 import PropertyTypes from './landing/PropertyTypes';
 import VideoSection from './landing/VideoSection';
 import OwnershipComparison from './landing/OwnershipComparison';
@@ -19,6 +19,8 @@ import FinancialServices from './financial/FinancialServices';
 import ProductsSection from './products/ProductsSection';
 import Apartments from '../pages/Apartments';
 import { useMediaQuery } from 'react-responsive';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Hero = () => {
   const isMobile = useMediaQuery({ query: '(max-width: 768px)' }); // Tailwind 'md' breakpoint
@@ -73,6 +75,8 @@ const Hero = () => {
           {/* Conditional Rendering */}
           {isMobile ? <Apartments /> : <PropertyTypes />}
 
+          <ProductsSection />
+
           <AnimatedElement direction="up" delay={0.6}>
             <div className="mt-8 py-4">
               <h2 className="text-3xl px-4 font-bold text-gray-900 mb-12">
@@ -89,19 +93,19 @@ const Hero = () => {
           </AnimatedElement>
 
           <Vision />
-          <ProductsSection />
           <OwnershipSteps />
           <IntentionalLivingTable />
           <OwnershipComparison />
 
-          <AnimatedElement direction="up" delay={0.6}>
+          {/* <AnimatedElement direction="up" delay={0.6}>
             <CustomerFeedback />
-          </AnimatedElement>
+          </AnimatedElement> */}
           <AnimatedElement direction="up" delay={0.6}>
             <ContactSection />
           </AnimatedElement>
         </div>
       </div>
+      <ToastContainer position="top-right" />
     </div>
   );
 };

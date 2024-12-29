@@ -15,7 +15,7 @@ import Bond from './pages/Bond';
 import GetStarted from './pages/GetStarted';
 import axios from 'axios';
 
-axios.defaults.baseURL="http://3.109.80.98:8000"
+axios.defaults.baseURL="http://3.109.80.98"
 
 function App() {
   return (
@@ -25,7 +25,7 @@ function App() {
       <Route path="/how-it-works" element={<><HowItWorks /><Footer /></>} />
       <Route path="/faq" element={<><Faq /><Footer /></>} />
       <Route path="/apartments" element={<><Navbar /><Apartments /></>} />
-      <Route path="/contact" element={<><Contact /><Footer /></>} />
+      <Route path="/contact" element={<><Navbar /><div className='pt-20'><Contact /></div><Footer /></>} />
       <Route path="/about" element={<><About /><Footer /></>} />
       <Route path="/get-started" element={<><GetStarted /><Footer /></>} />
       <Route path="/" element={

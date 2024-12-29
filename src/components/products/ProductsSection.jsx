@@ -34,7 +34,7 @@ const products = [
   {
     id: 'warehouse',
     icon: Warehouse,
-    title: 'Co-WareHouse',
+    title: 'Co-warehousing',
     shortDesc: 'Strategic storage solutions for businesses',
     fullDesc: `Transform your business logistics with our modern warehouse solutions:
     • Strategic locations near major transportation hubs
@@ -48,7 +48,7 @@ const products = [
   {
     id: 'sports',
     icon: Trophy,
-    title: 'Co-Sports Clubs',
+    title: 'Co-sporting',
     shortDesc: 'World-class sports facilities for health enthusiasts',
     fullDesc: `Join our premium sports clubs for a complete fitness experience:
     • Modern gym equipment and facilities

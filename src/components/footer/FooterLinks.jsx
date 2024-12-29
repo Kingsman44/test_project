@@ -6,8 +6,8 @@ const FooterLinks = () => {
     { title: 'Company', items: [
       { name: 'About Us', path: '/about' },
       { name: 'How It Works', path: '/how-it-works' },
-      { name: 'Careers', path: '/careers' },
-      { name: 'Blog', path: '/blog' }
+      // { name: 'Careers', path: '/careers' },
+      // { name: 'Blog', path: '/blog' }
     ]},
     { title: 'Properties', items: [
       { name: 'Residential', path: '/apartments' },

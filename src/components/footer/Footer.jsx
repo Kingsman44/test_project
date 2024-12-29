@@ -63,7 +63,7 @@ const Footer = () => {
         {/* Copyright */}
         <div className="mt-12 pt-8 border-t border-gray-200">
           <p className="text-center text-gray-600">
-            © {new Date().getFullYear()} CoBrother. All rights reserved.
+            © {new Date().getFullYear()} Cobrother Ecosystem. All rights reserved.
           </p>
         </div>
       </div>
