@@ -23,7 +23,7 @@ const FooterContact = () => {
         />
         <ContactItem 
           icon={MapPin} 
-          text="#27 3<sup>rd</sup> Floor, D block, Shinde complex, Neetigin Road, Hubli, Karnataka, IN (580029)" 
+          text="#27 3<sup>rd</sup> Floor, D-Block, Shinde complex, Neetigin Road, Hubli, Karnataka, IN (580029)" 
         />
       </div>
     </div>

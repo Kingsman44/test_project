@@ -96,7 +96,7 @@ const ImageCarousel = () => {
   }, []);
 
   return (
-    <div className="relative -mt-[64px] h-screen w-full">
+    <div className="relative -mt-[64px] w-full">
       {/* Content Container */}
       <div className="flex sm:items-center px-5">
         {/* Main Content */}

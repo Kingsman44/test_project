@@ -73,7 +73,7 @@ const ContactSection = () => {
               <ContactInfo
                 icon={MapPin}
                 title="Office"
-                content="#27 3<sup>rd</sup> Floor, D block, Shinde complex, Neetigin Road, Hubli, Karnataka, IN (580029)"
+                content="#27 3<sup>rd</sup> Floor, D-Block, Shinde complex, Neetigin Road, Hubli, Karnataka, IN (580029)"
               />
             </div>
 
