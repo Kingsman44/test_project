@@ -15,7 +15,7 @@ import Bond from './pages/Bond';
 import GetStarted from './pages/GetStarted';
 import axios from 'axios';
 
-axios.defaults.baseURL="http://3.109.80.98"
+axios.defaults.baseURL="https://cobrotherbackend.biz"
 
 function App() {
   return (

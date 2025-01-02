@@ -15,7 +15,7 @@ const FooterContact = () => {
       <div className="space-y-3">
         <ContactItem 
           icon={Phone} 
-          text="080-85758575" 
+          text="080 8575 8575" 
         />
         <ContactItem 
           icon={Mail} 

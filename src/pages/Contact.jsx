@@ -53,7 +53,7 @@ const ContactSection = () => {
               <ContactInfo
                 icon={Phone}
                 title="Phone"
-                content="080 85758575 • 080 88117744 • 080 22111008"
+                content="080 8575 8575"
               />
                {/* <ContactInfo
                 icon={Phone}

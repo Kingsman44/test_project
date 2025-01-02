@@ -11,25 +11,7 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLocationOpen, setIsLocationOpen] = useState(false);
   const isVisible = useScrollDirection();
-  const { selectedLocation, setSelectedLocation } = useLocation();
-
-  const [locations, setLocations] = useState(["Hubli"]);
-
-  useEffect(() => {
-    async function fetchLocation() {
-      try {
-        const { data } = await axios.get('/api/location/find/');
-        if (data.success) {
-          setLocations(data.data.map(item => item.name));
-        } else {
-          alert("Error Fetching Locations");
-        }
-      } catch (e) {
-        console.log(`Error: ${String(e)}`);
-      }
-    }
-    fetchLocation();
-  }, [])
+  const { selectedLocation, setSelectedLocation, locations } = useLocation();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);

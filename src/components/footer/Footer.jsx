@@ -30,7 +30,7 @@ const Footer = () => {
               <img 
                 src="/cobrother-logo.png" 
                 alt="CoBrother" 
-                className="h-12 w-auto"
+                className="h-20 w-auto"
               />
             </div>
             <p className="text-gray-600 mb-6">
