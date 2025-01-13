@@ -20,7 +20,7 @@ const PhoneVerification = ({ onSubmit, error, setError, handleGoogleSignIn, hand
   return (
     <div className="space-y-6">
       <p className="text-gray-600 text-center">
-        Enter your phone number or use alternative method to get started.
+        Enter your 10 digit phone number.
       </p>
 
       <form onSubmit={handleSubmit} className="space-y-4">
@@ -41,6 +41,7 @@ const PhoneVerification = ({ onSubmit, error, setError, handleGoogleSignIn, hand
             />
             <div id="recaptcha-container"></div>
           </div>
+          <p className='text-center text-gray-600 font-bold pt-2 -mb-3'>OR</p>
           <div className="flex justify-between mt-6 space-x-4">
             <button
               onClick={handleGoogleSignIn}

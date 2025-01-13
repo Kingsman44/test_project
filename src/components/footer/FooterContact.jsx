@@ -15,7 +15,7 @@ const FooterContact = () => {
       <div className="space-y-3">
         <ContactItem 
           icon={Phone} 
-          text="080 8575 8575" 
+          text="080-8575 8575" 
         />
         <ContactItem 
           icon={Mail} 
@@ -23,7 +23,7 @@ const FooterContact = () => {
         />
         <ContactItem 
           icon={MapPin} 
-          text="#27 3<sup>rd</sup> Floor, D-Block, Shinde complex, Neetigin Road, Hubli, Karnataka, IN (580029)" 
+          text="#27, 3<sup>rd</sup> Floor, D-Block, Shinde complex, Neetigin Road, Hubli, Karnataka, (IN) 580029" 
         />
       </div>
     </div>

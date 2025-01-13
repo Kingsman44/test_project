@@ -60,8 +60,8 @@ const PropertyShowcase = () => {
       <AnimatedElement direction="up" delay={0.4}>
         <div className="max-w-[1920px] mx-auto pb-12">
           <div className="text-center p-12">
-            <h2 className="max-sm:text-2xl text-3xl font-bold text-gray-900 mb-4">Featured Properties in {selectedLocation}</h2>
-            <p className="text-gray-600">Discover Our Premium Co-ownership Opportunities</p>
+            <h2 className="max-sm:text-2xl text-3xl font-bold text-gray-900 mb-4">Co-Own with CoBrother in {selectedLocation}</h2>
+            {/* <p className="text-gray-600">Discover Our Premium Co-ownership Opportunities</p> */}
           </div>
 
           <div className="flex pb-8 max-sm:hidden">
@@ -72,13 +72,13 @@ const PropertyShowcase = () => {
                   <p className="max-sm:text-l max-sm:text-justify text-gray-600 text-lg mb-6">{property.description}</p>
                   
                   <div className="flex max-sm:flex-col max-sm:justify-between items-center justify-center sm:space-x-8 mb-6">
-                    <div className="flex flex-col items-center">
+                    {/* <div className="flex flex-col items-center">
                       <div className="flex items-center space-x-2">
                         <span className="max-sm:text-[18px] text-2xl font-bold text-gray-900">{property.sqft.toLocaleString()}</span>
                         <span className="text-gray-600">Sq/ft</span>
                       </div>
-                    </div>
-                    <div className="max-sm:h-[0px] h-12 w-px bg-gray-300"></div>
+                    </div> */}
+                    {/* <div className="max-sm:h-[0px] h-12 w-px bg-gray-300"></div> */}
                     <div className="flex flex-col items-center">
                       <div className="flex items-center space-x-2">
                         <span className="max-sm:text-[18px] text-2xl font-bold text-gray-900">{property.members.toLocaleString()}</span>
@@ -103,7 +103,7 @@ const PropertyShowcase = () => {
                     className="sm:mt-8 max-sm:mb-4 px-8 py-3 get-started-button inline-flex items-center bg-gray-700 text-gray-100 rounded-lg border-2 border-primary-300 transition-all duration-300 text-lg font-semibold hover:bg-primary-300 hover:text-gray-800 hover:border-gray-300 shadow-lg hover:shadow-primary-500/50" 
                     onClick={() => navigate('/get-started',{ state: { property: property.title, category: property.categoryId } })}
                   >
-                    <span>Join Community</span>
+                    <span>Join Now</span>
                     <ArrowRight className="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform" />
                   </button>
                 </AnimatedElement>

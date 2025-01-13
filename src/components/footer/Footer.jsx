@@ -34,7 +34,7 @@ const Footer = () => {
               />
             </div>
             <p className="text-gray-600 mb-6">
-              Revolutionizing co-ownership through exceptional service and curated properties.
+              Revolutionizing Co-ownership through exceptional service and curated properties.
             </p>
             <div className="flex space-x-4">
               <SocialLink href="#" icon={Facebook} />

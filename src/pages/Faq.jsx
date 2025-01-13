@@ -6,15 +6,15 @@ import AnimatedElement from '../components/animations/AnimatedElement';
 const faqs = [
   {
     question: "What is property co-ownership?",
-    answer: "Property co-ownership allows multiple investors to share ownership of a property through a structured legal framework. At CoBrother, we facilitate this through an LLP structure where each co-owner holds tokens representing their ownership stake."
+    answer: "Property co-ownership allows multiple investors to share ownership of a property through a structured legal framework. At CoBrother Ecosystem, we facilitate this through an LLP structure where each co-owner holds tokens representing their ownership stake."
   },
   {
-    question: "How does CoBrother's 2% management stake work?",
-    answer: "CoBrother maintains a 2% non-dilutable management stake in each property LLP. This ensures our commitment to property management, maintenance, and value appreciation while aligning our interests with co-owners."
+    question: "How does CoBrother Ecosystem 2% management stake work?",
+    answer: "CoBrother Ecosystem maintains a 2% non-dilutable management stake in each property LLP. This ensures our commitment to property management, maintenance, and value appreciation while aligning our interests with co-owners."
   },
   {
     question: "What types of properties can I invest in?",
-    answer: "CoBrother offers co-ownership opportunities in residential, commercial, and agricultural properties. Each property is carefully selected based on location, potential returns, and growth prospects."
+    answer: "CoBrother Ecosystem offers co-ownership opportunities in residential, commercial, and agricultural properties. Each property is carefully selected based on location, potential returns, and growth prospects."
   },
   {
     question: "How can I exit my investment?",
@@ -43,7 +43,7 @@ const Faq = () => {
   const [chatOpen, setChatOpen] = useState(false);
   const [message, setMessage] = useState('');
   const [chatMessages, setChatMessages] = useState([
-    { text: "Hello! I'm CoBrother's AI assistant. How can I help you learn more about our co-ownership opportunities?", isUser: false }
+    { text: "Hello! I'm CoBrother Ecosystem AI assistant. How can I help you learn more about our co-ownership opportunities?", isUser: false }
   ]);
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredFaqs, setFilteredFaqs] = useState(faqs);
@@ -84,7 +84,7 @@ const Faq = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      <Navbar />
+      {/* <Navbar /> */}
       <div className="pt-32 pb-16 px-4">
         <div className="max-w-3xl mx-auto">
           <AnimatedElement direction="up" delay={0.1}>
@@ -134,12 +134,12 @@ const Faq = () => {
             </div>
           </AnimatedElement>
 
-          {/* AI Chatbot */}
+          {/* AI Chatbot
           <div className={`fixed bottom-4 right-4 z-50 ${chatOpen ? 'w-96' : 'w-auto'}`}>
             {chatOpen ? (
               <div className="bg-white rounded-xl border border-primary-100 shadow-xl">
                 <div className="p-4 border-b border-primary-100 flex justify-between items-center">
-                  <h3 className="text-gray-900 font-semibold">CoBrother AI Assistant</h3>
+                  <h3 className="text-gray-900 font-semibold">CoBrother Ecosystem AI Assistant</h3>
                   <button 
                     onClick={() => setChatOpen(false)}
                     className="text-gray-400 hover:text-gray-600"
@@ -182,7 +182,7 @@ const Faq = () => {
                 <MessageCircle className="w-6 h-6" />
               </button>
             )}
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

@@ -34,7 +34,7 @@ const OwnershipSteps = () => {
   const steps = [
     {
       icon: Search,
-      title: "FINDING YOUR PERFECT CO-BUYING TEAM",
+      title: "JOINING THE COBROTHER ECOSYSTEM",
       points: [
         "Build your ideal purchasing group",
         "Define shared values and priorities",

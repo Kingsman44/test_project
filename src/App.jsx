@@ -23,7 +23,7 @@ function App() {
       <Route path="/signin" element={<><SignIn /><Footer /></>} />
       <Route path="/register" element={<><Register /><Footer /></>} />
       <Route path="/how-it-works" element={<><HowItWorks /><Footer /></>} />
-      <Route path="/faq" element={<><Faq /><Footer /></>} />
+      <Route path="/faq" element={<><Navbar /><div className='pt-20'><Faq /></div><Footer /></>} />
       <Route path="/apartments" element={<><Navbar /><Apartments /></>} />
       <Route path="/contact" element={<><Navbar /><div className='pt-20'><Contact /></div><Footer /></>} />
       <Route path="/about" element={<><About /><Footer /></>} />

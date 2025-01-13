@@ -11,9 +11,9 @@ const FooterLinks = () => {
     ]},
     { title: 'Properties', items: [
       { name: 'Residential', path: '/apartments' },
-      { name: 'Commercial', path: '/apartments' },
+      { name: 'Business', path: '/apartments' },
       { name: 'Agricultural', path: '/apartments' },
-      { name: 'Educational', path: '/apartments' }
+      // { name: 'Educational', path: '/apartments' }
     ]}
   ];
 

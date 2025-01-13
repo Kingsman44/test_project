@@ -432,7 +432,7 @@ const GetStarted = () => {
             <AnimatedElement direction="up" delay={0.1}>
               <div className="bg-white rounded-2xl p-8 shadow-lg border border-primary-100">
                 <h1 className="text-3xl font-bold text-gray-900 mb-6 text-center">
-                  Get Started
+                  Join now
                 </h1>
                 {step === 'phone' ? (
                   <PhoneVerification

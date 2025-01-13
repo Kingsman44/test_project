@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import Logo from '../assets/logo.png';
+import Logo from '../assets/SLOGAN.png';
 import { Building2, Briefcase, Tractor } from 'lucide-react';
 import AnimatedElement from './animations/AnimatedElement';
 import axios from 'axios';
@@ -101,12 +101,12 @@ const ImageCarousel = () => {
       <div className="flex sm:items-center px-5">
         {/* Main Content */}
         <div className="flex-1 text-center pt-44 text-gray-600">
-          <h1 className="text-3xl sm:text-3xl md:text-5xl mb-8">
+          <h1 className="text-3xl sm:text-3xl py-12 md:text-5xl mb-8">
             <img src={Logo} className="h-40 max-sm:h-16 -mt-16 max-sm:-my-6 -m-12 max-sm:-mx-4 inline drop-shadow-[0_0_10px_rgba(255,255,255,0.8)]" />
-            {' '} - Just as Awesome as{' '}
+            {/* {' '} - Just as Awesome as{' '}
             <span className="font-cursive text-4xl sm:text-5xl md:text-6xl bg-gradient-to-r from-primary-400 via-primary-500 to-primary-600 bg-clip-text text-transparent damion-regular">
               You!
-            </span>
+            </span> */}
           </h1>
         </div>
       </div>
@@ -138,7 +138,7 @@ const ImageCarousel = () => {
           to="/get-started"
           className="get-started-button text-center justify-center inline-flex items-center px-8 py-4 rounded-lg transition-all duration-300 text-lg font-semibold shadow-lg"
         >
-          Join CoBrothers <ArrowRight className="ml-2 w-6 h-6" />
+          Join CoBrother <ArrowRight className="ml-2 w-6 h-6" />
         </Link>
       </div>
       {/* Bottom Fade

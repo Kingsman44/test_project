@@ -7,7 +7,7 @@ const ComparisonItem = ({ feature, coOwnership, fullOwnership, delay }) => (
     <div className="grid grid-cols-3 gap-4 py-4 border-b border-gray-100">
       <div className="text-gray-700">{feature}</div>
       <div className="text-center">
-        {coOwnership ? (
+        {fullOwnership ? (
           <div className="flex items-center justify-center text-primary-600">
             <Check className="w-5 h-5" />
           </div>
@@ -18,7 +18,7 @@ const ComparisonItem = ({ feature, coOwnership, fullOwnership, delay }) => (
         )}
       </div>
       <div className="text-center">
-        {fullOwnership ? (
+        {coOwnership ? (
           <div className="flex items-center justify-center text-primary-600">
             <Check className="w-5 h-5" />
           </div>
@@ -35,7 +35,7 @@ const ComparisonItem = ({ feature, coOwnership, fullOwnership, delay }) => (
 const OwnershipComparison = () => {
   const features = [
     {
-      feature: "Lower Initial Investment",
+      feature: "CoBrother Ecosystem",
       coOwnership: true,
       fullOwnership: false,
       delay: 0.2
@@ -64,6 +64,12 @@ const OwnershipComparison = () => {
       fullOwnership: false,
       delay: 0.6
     },
+    {
+      feature: "Investment Friendly",
+      coOwnership: true,
+      fullOwnership: false,
+      delay: 0.6
+    },
   ];
 
   return (
@@ -72,13 +78,13 @@ const OwnershipComparison = () => {
         <div className="-mt-28 max-w-7xl mx-auto px-4">
           <div className="bg-white/80 backdrop-blur-md rounded-2xl p-8 shadow-lg">
             <h2 className="text-3xl font-bold text-gray-900 text-center mb-8">
-              Ownership Comparison
+              omparison
             </h2>
             
             <div className="grid grid-cols-3 gap-4 mb-6 text-lg font-semibold">
               <div className="text-gray-900">Features</div>
+              <div className="text-center text-primary-600">Ownership</div>
               <div className="text-center text-primary-600">Co-Ownership</div>
-              <div className="text-center text-primary-600">Full Ownership</div>
             </div>
 
             {features.map((item, index) => (
